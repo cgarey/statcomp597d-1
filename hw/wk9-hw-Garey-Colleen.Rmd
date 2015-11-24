@@ -1,0 +1,108 @@
+#### 1. Initial GitHub workflow
+
+a. Pat yourselves on the back if you were able to "fork", then "clone" this repo. Maybe massage your brain, too.
+
+b. Re-save this file with your last and first name as well as altering the title of this file.
+
+#### Tips for creating functions
+
+*Use the least possible number of steps. Work line by line, printing out each value as you create the function. Trying to create a function that will solve the whole problem will typically lead to long debugging times because you will not know where you made the mistake.*
+
+#### 2. if-then-else
+Create a function `is.a.number()` that takes a single parameter `X` and returns `"Is a number"` if it is a number, `"Is NA"` if it is an `NA` value, and `"I have no clue"` if it is neither a number nor an `NA` value. Use the `is.na()` and `is.numeric()` functions.
+
+
+```{r}
+
+func_1 <- function(x){
+  if(class(x)=="numeric")
+    return("Is a number")
+  if(class(x)=="NA")
+    return("Is NA")
+  if(class(x)!="numeric"| class(x) != "NA")
+    return("I have no clue")
+}
+
+```
+
+
+
+#### 3. primes 
+Create a function that when inputting a single prime number between 3 and 100, it will output a `TRUE` or `FALSE` in a `message()`. Insert an error message as if somebody were to insert a number less than 3, greater than 100, or a non-numeric character. (*Please don't insert all of the prime numbers between 3 and 100 into the function...*)
+
+```{r}
+
+library(numbers)
+func_2 <- function(x){
+  if(class(x)!="numeric")
+    stop("x must be numeric")
+  if((x < 3)|(x > 100))
+    stop("x must be greater than 3 or less than 100")
+  if(((x>=3)|x<=100)&&isPrime(x)==TRUE)
+    message("TRUE")
+  if(((x>=3)|x<=100)&&isPrime(x)==FALSE)
+    message("FALSE")
+}
+
+```
+
+
+#### 4. ggplot2
+
+a. Using `ggplot2`, create a function that when inputting a single continuous variable, it will print out a histogram. Include arguments to alter the theme, x-variable label, a title, and a `TRUE` or `FALSE` option to create a density plot.
+
+```{r}
+func_3a <- function(z,d,...) {
+require(ggplot2)
+  
+if(class(z)!="numeric")
+stop("value must be numeric")
+  
+p <- qplot(z,...)
+
+if(d==TRUE)
+  print(p+geom_density())
+if(d==FALSE)
+  print(p+geom_histogram())
+}
+
+```
+
+
+b. Similarly, create a function that when inputting two continuous variables, it will print a scatterplot. Additionally, in the console, print the mean and variance of the two variables as well as the coefficient value of the specified x-variable.  Include arguments to alter the title and a `TRUE` or `FALSE` option to include a smoothing method of *lm* aka a simple linear model line in/on the scatterplot.
+
+```{r}
+func_3b <- function(x,y,d,...) {
+require(ggplot2)
+  
+if(class(x)!="numeric"|class(y)!="numeric")
+stop("values must be numeric")
+
+  
+p <- qplot(x,y,d...)
+
+if(d==TRUE)
+  print(p+stat_smooth())
+if(d==FALSE)
+  print(p)
+
+mx <- mean(x)
+print(mx)
+my <- mean(y)
+print(my)
+
+vx <- var(x)
+print(vx)
+vy <- var(y)
+print(vy)
+
+}
+```
+
+
+
+#### 5. Remaining GitHub workflow
+
+a. Now finish off the workflow of submitting your homework by "committing" the changes locally, "pushing" the changes to YOUR online repo, and finally creating a pull request. 
+
+b. Pat yourselves on the back, again.  You deserved it.
